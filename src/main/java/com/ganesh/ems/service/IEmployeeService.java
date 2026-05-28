@@ -8,4 +8,6 @@ public interface IEmployeeService {
     EmployeeResponseDTO createEmployee(EmployeeRequestDTO employeeRequestDTO);
 
     EmployeeResponseDTO getEmployeeById(Long id);
+
+    String deleteEmployeeById(Long id);
 }

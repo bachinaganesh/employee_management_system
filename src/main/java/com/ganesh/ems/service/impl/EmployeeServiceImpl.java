@@ -30,4 +30,15 @@ public class EmployeeServiceImpl implements IEmployeeService {
         Employee employee = this.employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id " + id));
         return modelMapper.map(employee, EmployeeResponseDTO.class);
     }
+
+    @Override
+    public String deleteEmployeeById(Long id) {
+        boolean exists = this.employeeRepository.existsById(id);
+        if (!exists) {
+            throw new ResourceNotFoundException("Employee not found with id " + id);
+        }
+
+        this.employeeRepository.deleteById(id);
+        return "Employee with id " + id + " has been deleted";
+    }
 }
